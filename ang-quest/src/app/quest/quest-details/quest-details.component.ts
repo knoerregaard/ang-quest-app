@@ -8,12 +8,13 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class QuestDetailsComponent implements OnInit {
 
+  /* Vores quest detail skal have en Quest. Normalt ville den komme fra en DB, men til at starte med hardcoder vi denne */
   quest = {
     id : 1,
     title : "den første quest",
     description : "...",
     date : "",
-    locations : [{
+    challenges : [{
       title : "",
       description :"",
       lat : "",
@@ -24,12 +25,16 @@ export class QuestDetailsComponent implements OnInit {
   }
 
   constructor(
+    /* For at kunne benytte ActivatedRoute injecter vi denne i klassen */
     private route: ActivatedRoute,
   ) {
   }
 
   ngOnInit(): void {
-    let id = this.route.snapshot.paramMap.get('id'); //alternativ Observables
+    /*  ActivatedRoute har en snapshot funktion der tager paramteret fra uri. 
+        Alternativt til Snapshot er anvendelsen af Observables.
+    */
+    let id = this.route.snapshot.paramMap.get('id'); 
     console.log(id)
   }
 }

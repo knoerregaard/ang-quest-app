@@ -6,11 +6,14 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { QuestListComponent } from './quest/quest-list/quest-list.component';
 
+/* Import af alle Materialkomponenter start */
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';import {MatIconModule} from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
 import { QuestDetailsComponent } from './quest/quest-details/quest-details.component';
+/* Import af alle Materialkomponenter slut */
 
+/* I deklaration skal i smide alle komponenter. I Imports smider i alle moduler. */
 @NgModule({
   declarations: [
     AppComponent,

@@ -2,7 +2,8 @@
 <mat-list>
     <mat-list-item *ngFor="let quest of quests" router>
         <mat-icon mat-list-icon>folder</mat-icon>
-        <a [routerLink]="['/quests/details', quest.id]">
+        <!-- routerLink tager to argumenter, path og ressource. Alt hvad der ligger i <a> linker til en ressource-->
+        <a routerLink="'/quests/details', quest.id]">
             <div mat-line>{{quest.title}}</div>
         </a>
     </mat-list-item>

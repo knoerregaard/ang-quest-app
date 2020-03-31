@@ -9,6 +9,7 @@ export class QuestListComponent implements OnInit {
 
   constructor() { }
 
+  /* Vores app skal have en liste af objekter som kan vises i brugergrænsefladen */
   quests = [{
     id : 1, 
     title : "den første quest"

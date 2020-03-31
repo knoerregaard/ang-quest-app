@@ -1,1 +1,9 @@
-<p>quest-list works!</p>
+<h1>Quest list</h1>
+<mat-list>
+    <mat-list-item *ngFor="let quest of quests" router>
+        <mat-icon mat-list-icon>folder</mat-icon>
+        <a [routerLink]="['/quests/details', quest.id]">
+            <div mat-line>{{quest.title}}</div>
+        </a>
+    </mat-list-item>
+</mat-list>

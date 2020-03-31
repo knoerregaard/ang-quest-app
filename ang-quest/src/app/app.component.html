@@ -1,5 +1,18 @@
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
 
-<router-outlet></router-outlet>
 <mat-toolbar>
-  <small>Toolbar skal ned i bunden. <br>Tre knapper. Se design.</small>
+  <button mat-button>
+    <mat-icon aria-hidden="false">map</mat-icon><br>
+    <div class="mat-small">Hunts</div>
+  </button>
+  <button mat-button>
+    <mat-icon aria-hidden="false">person</mat-icon><br>
+    <div class="mat-small">Account</div>
+  </button>  
+  <button mat-button>
+    <mat-icon aria-hidden="false">whatshot</mat-icon><br>
+    <div class="mat-small">...</div>
+  </button>
 </mat-toolbar>

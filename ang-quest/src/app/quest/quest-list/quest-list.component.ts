@@ -9,6 +9,17 @@ export class QuestListComponent implements OnInit {
 
   constructor() { }
 
+  quests = [{
+    id : 1, 
+    title : "den første quest"
+  },{
+    id : 2, 
+    title : "den anden quest"
+  },{
+    id : 3, 
+    title : "den tredje quest"
+  }]
+
   ngOnInit(): void {
   }
 

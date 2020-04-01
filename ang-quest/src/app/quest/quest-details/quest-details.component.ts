@@ -14,6 +14,8 @@ export class QuestDetailsComponent implements OnInit {
     title : "den første quest",
     description : "...",
     date : "",
+    lat: 5,
+    long: 4,
     challenges : [{
       title : "Første post",
       description :"Beskrivelse af første post",

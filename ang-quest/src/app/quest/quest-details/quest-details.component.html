@@ -2,6 +2,6 @@
 <button routerLink="/quests" mat-flat-button><mat-icon mat-list-icon>chevron_left</mat-icon></button>
 <div class="mat-title" style="float: right">tekst</div>
 
-<app-map></app-map>
+<app-map [lat]="quest.lat" [long]="quest.long"></app-map>
 
 <!-- Zoom funktionalitet -->

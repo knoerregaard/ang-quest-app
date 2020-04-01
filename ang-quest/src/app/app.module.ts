@@ -11,6 +11,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';import {MatIconModule} from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
 import { QuestDetailsComponent } from './quest/quest-details/quest-details.component';
+import { MapComponent } from './quest/quest-details/map/map.component';
+
 /* Import af alle Materialkomponenter slut */
 
 /* I deklaration skal i smide alle komponenter. I Imports smider i alle moduler. */
@@ -18,7 +20,8 @@ import { QuestDetailsComponent } from './quest/quest-details/quest-details.compo
   declarations: [
     AppComponent,
     QuestListComponent,
-    QuestDetailsComponent
+    QuestDetailsComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,

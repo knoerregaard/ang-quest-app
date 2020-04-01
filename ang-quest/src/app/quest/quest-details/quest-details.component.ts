@@ -15,12 +15,11 @@ export class QuestDetailsComponent implements OnInit {
     description : "...",
     date : "",
     challenges : [{
-      title : "",
-      description :"",
-      lat : "",
-      long : "",
-      question : "",
-      answers : [{}]
+      title : "Første post",
+      description :"Beskrivelse af første post",
+      lat : "56",
+      long : "9",
+      question : "..."
     }]
   }
 

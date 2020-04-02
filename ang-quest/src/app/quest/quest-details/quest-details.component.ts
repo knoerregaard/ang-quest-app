@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { QuestService } from '../quest.service';
+import { QuestStoreService } from '../quest-store.service';
+import { LocationService } from '../location.service';
 
 @Component({
   selector: 'app-quest-details',
@@ -14,13 +17,13 @@ export class QuestDetailsComponent implements OnInit {
     title : "den første quest",
     description : "...",
     date : "",
-    lat: 5,
-    long: 4,
+    lat: 56,
+    long: 9,
     challenges : [{
       title : "Første post",
       description :"Beskrivelse af første post",
-      lat : "56",
-      long : "9",
+      lat : 56,
+      long : 9,
       question : "..."
     }]
   }
@@ -28,14 +31,22 @@ export class QuestDetailsComponent implements OnInit {
   constructor(
     /* For at kunne benytte ActivatedRoute injecter vi denne i klassen */
     private route: ActivatedRoute,
+    private questStore : QuestStoreService
   ) {
+
+    setTimeout(() => {
+      this.questStore.addQuest("title", 10, 10);
+    }, 5000);
+  }
+
+  isZooming(data: string){
+    console.log(data)
   }
 
   ngOnInit(): void {
     /*  ActivatedRoute har en snapshot funktion der tager paramteret fra uri. 
         Alternativt til Snapshot er anvendelsen af Observables.
     */
-    let id = this.route.snapshot.paramMap.get('id'); 
-    console.log(id)
+    let id = this.route.snapshot.paramMap.get('id');
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocationService } from '../location.service';
 
 @Component({
   selector: 'app-quest-list',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuestListComponent implements OnInit {
 
-  constructor() { }
+  constructor( ) { }
 
   /* Vores app skal have en liste af objekter som kan vises i brugergrænsefladen */
   quests = [{

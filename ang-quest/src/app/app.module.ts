@@ -12,6 +12,7 @@ import {MatButtonModule} from '@angular/material/button';import {MatIconModule} 
 import {MatListModule} from '@angular/material/list';
 import { QuestDetailsComponent } from './quest/quest-details/quest-details.component';
 import { MapComponent } from './quest/quest-details/map/map.component';
+import { LocationService } from './quest/location.service';
 
 /* Import af alle Materialkomponenter slut */
 
@@ -21,16 +22,16 @@ import { MapComponent } from './quest/quest-details/map/map.component';
     AppComponent,
     QuestListComponent,
     QuestDetailsComponent,
-    MapComponent
+    MapComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule, MatButtonModule, MatIconModule, MatListModule
-
   ],
-  providers: [],
+  providers: [ LocationService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

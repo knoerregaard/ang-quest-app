@@ -4,8 +4,8 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class QuestService {
-
+export class QuestStoreService {
+  
   /** A simple state management service, that handle the active quest, the challenges, etc.
     https://dev.to/avatsaev/simple-state-management-in-angular-with-only-services-and-rxjs-41p8 
 
@@ -22,11 +22,6 @@ export class QuestService {
   readonly quest$ = this._quest.asObservable();
 
   // 3. setter
-  // set setQuest(val: any) {
-  //   this._quest.next(val);
-  // }
-
-  // 3. setter
   private set quest(val: any) {
     this._quest.next(val);
   }
@@ -37,5 +32,4 @@ export class QuestService {
     // with automatically assigned ID ( don't do this at home, use uuid() )
     this.quest = {title, lat, long};
   }
-
 }

@@ -5,8 +5,8 @@ import Map from 'ol/Map';
 import View from 'ol/View';
 import TileLayer from 'ol/layer/Tile';
 import XYZ from 'ol/source/XYZ';
-import { QuestService } from '../../quest.service';
 import { QuestStoreService } from '../../quest-store.service';
+import { LocationService } from '../../location.service';
 
 @Component({
   selector: 'app-map',
@@ -30,17 +30,27 @@ export class MapComponent implements OnInit {
   /* Property der holder på et Map objekt */
   map : Map;
 
-  constructor(private questStore : QuestStoreService) {
-    this.questStore.quest$.subscribe(
-      (suc)=>{
-        //sette nye værdier for kortet med de data som kommer fra objektet
-        this.map.getView().setCenter(olProj.fromLonLat([suc.long, suc.lat]))
-      },
-      (err)=>{console.log(err)},
-      ()=>{console.log("finnally")}
-    )
+  /* Vores map-komponent er interesseret i vores QuestStore, 
+  fordi den holder på vores aktive quest. 
+  Fordi vi har angivet quest$ som en observable, kan vi subscribe på den og få
+  data når der sker ændringer. subscribe() tager tre argumenter - success, error og finally.
+  Nå vi har success objektet tilrådighed, har vi et quest-objekt, som vi kan benytte
+  til at opdatere vores kort.
+  */
+  constructor(
+    private questStore : QuestStoreService,
+    private locationService : LocationService
+    ) {
+      this.locationService.position$.subscribe(
+        (suc)=>{
+          console.log(suc);
+        },
+        (err)=>{console.log(err);},
+        ()=>{console.log("finnally");
+        }
+      );
   }
-
+  /* NgOninit kan benyttes til at initere kortet.  */
   ngOnInit(): void {
     this.map = new Map({
       target: 'map',
@@ -52,22 +62,21 @@ export class MapComponent implements OnInit {
         })
       ],
       view: new View({
-        center : olProj.fromLonLat([this.long, this.lat]), //https://openlayers.org/en/latest/apidoc/module-ol_proj.html
+        center : olProj.fromLonLat([1, 1]), //https://openlayers.org/en/latest/apidoc/module-ol_proj.html
         zoom : 5
       })
     });
 
   }
 
-  /* Når angular er færdig med at loade view og child-views, kan vi binde map til template. */
-  ngAfterViewInit() : void {
-    /* Subscribe to  */
+  ngAfterViewInit(){
     this.questStore.quest$.subscribe(
       (suc)=>{
+        //sette nye værdier for kortet med de data som kommer fra objektet
         this.map.getView().setCenter(olProj.fromLonLat([suc.long, suc.lat]))
       },
       (err)=>{console.log(err)},
-      ()=>{console.log("done")}
+      ()=>{console.log("finnally")}
     )
   }
 

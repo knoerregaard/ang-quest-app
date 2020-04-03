@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class QuestStoreService {
   
   /** A simple state management service, that handle the active quest, the challenges, etc.
@@ -19,7 +20,7 @@ export class QuestStoreService {
   private readonly _quest = new BehaviorSubject<any>({});
 
   // 2. Vores Oberservable som subscribers kan lytte på.
-  readonly quest$ = this._quest.asObservable();
+  readonly quest$ = this._quest;
 
   // 3. setter
   private set quest(val: any) {

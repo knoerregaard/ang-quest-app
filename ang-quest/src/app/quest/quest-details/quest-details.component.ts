@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { QuestService } from '../quest.service';
 import { QuestStoreService } from '../quest-store.service';
 import { LocationService } from '../location.service';
 
@@ -33,7 +32,6 @@ export class QuestDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private questStore : QuestStoreService
   ) {
-
     setTimeout(() => {
       this.questStore.addQuest("title", 10, 10);
     }, 5000);

@@ -18,7 +18,7 @@ export class LocationService {
   private readonly _pos = new BehaviorSubject<any>({});
 
   /* En eksponeret Obsevable som subscribers kan lytte på */
-  readonly position$ = this._pos;
+  public readonly position$ = this._pos;
 
   /* setter. Next metoden smider et nyt element i subject.  */
   private set pos(val: any) {
@@ -37,7 +37,4 @@ export class LocationService {
       console.log("Geolocation is not supported by this browser.");
     }
   }
-
-
-  
 }

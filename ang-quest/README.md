@@ -5,7 +5,7 @@
 ### Participants
 #### Register to hunt
 As a participant i should be able to register an event
-**End user goal:** Purchase items with a credit card
+> **End user goal:** Purchase items with a credit card
 **End business goal:** Increase purchases
 **Acceptance criteria:**
     * Accept Discover, Visa, MC

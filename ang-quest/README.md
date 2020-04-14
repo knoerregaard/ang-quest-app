@@ -3,7 +3,7 @@
 ## User stories
 
 ### Participants
-  > As a Participant on the website I want the ability to pay with a credit card, so that I may immediately confirm my purchase.
+As a Participant on the website I want the ability to pay with a credit card, so that I may immediately confirm my purchase.
    **End user goal:** Purchase items with a credit card
   > **End business goal:** Increase purchases
   > **Acceptance criteria:**

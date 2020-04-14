@@ -3,9 +3,8 @@
 ## User stories
 
 ### Participants
-## Example user story
-  > As a purchaser on the website I want the ability to pay with a credit card, so that I may immediately confirm my purchase.
-  > **End user goal:** Purchase items with a credit card
+  > As a Participant on the website I want the ability to pay with a credit card, so that I may immediately confirm my purchase.
+   **End user goal:** Purchase items with a credit card
   > **End business goal:** Increase purchases
   > **Acceptance criteria:**
     * Accept Discover, Visa, MC

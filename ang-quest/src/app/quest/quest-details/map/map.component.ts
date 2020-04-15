@@ -1,12 +1,17 @@
-import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef} from '@angular/core';
 
 import * as olProj from 'ol/proj';
 import Map from 'ol/Map';
 import View from 'ol/View';
 import TileLayer from 'ol/layer/Tile';
 import XYZ from 'ol/source/XYZ';
+
 import { QuestStoreService } from '../../quest-store.service';
+import { LoggerService } from '../../../shared/logger.service';
 import { LocationService } from '../../location.service';
+
+import { fromEvent } from 'rxjs';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-map',
@@ -15,7 +20,11 @@ import { LocationService } from '../../location.service';
 })
 
 export class MapComponent implements OnInit {
-
+  
+  @ViewChild('zoominn') button : MatButton;
+  
+  buttonStream$: any;
+  
   /* @Input() fortæller at en property er et input fra en Parent komponent. */
   @Input() lat : number = 1;
   @Input() long : number = 1;
@@ -23,6 +32,7 @@ export class MapComponent implements OnInit {
   quest : any;
 
   title : string = "";
+
 
   /* @Output() giver os mulighed for at emitte events til parent */
   @Output() outData = new EventEmitter<string>();
@@ -38,13 +48,12 @@ export class MapComponent implements OnInit {
   til at opdatere vores kort.
   */
   constructor(
+    private logger : LoggerService,
     private questStore : QuestStoreService,
     private locationService : LocationService
     ) {
       this.locationService.position$.subscribe(
-        (suc)=>{
-          console.log(suc);
-        },
+        (suc)=>{console.log(suc);},
         (err)=>{console.log(err);},
         ()=>{console.log("finnally");
         }
@@ -78,11 +87,24 @@ export class MapComponent implements OnInit {
       (err)=>{console.log(err)},
       ()=>{console.log("finnally")}
     )
+
+    // Vi definerer her en nye Observable ved hjælp af fromEvent.
+    this.buttonStream$ = fromEvent(this.button._elementRef.nativeElement, 'click');
+        // .subscribe(res => console.log(res));
+
+    this.buttonStream$
+      .map((element)=>{element + 1 })
+      .filter()
+      .subscribe(()=>{
+        this.map.getView().setZoom(<number>(this.map.getView().getZoom() + 1));
+        this.outData.emit("ZoomIn");
+      })
   }
 
   /* Husk at 'npm install @types/ol' for at installere typer, så i kan anvende intellisence og gøre jeres kode typestærkt */
   zoomIn(){
     /* Vi benytter os af OpenLayers API til at manipulere med kortet */
+
     this.map.getView().setZoom(<number>(this.map.getView().getZoom() + 1));
     this.outData.emit("ZoomIn");
   }

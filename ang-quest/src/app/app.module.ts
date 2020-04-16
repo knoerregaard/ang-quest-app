@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,7 +14,8 @@ import {MatListModule} from '@angular/material/list';
 import { QuestDetailsComponent } from './quest/quest-details/quest-details.component';
 import { MapComponent } from './quest/quest-details/map/map.component';
 import { LocationService } from './quest/location.service';
-
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { HttpClientModule } from '@angular/common/http';
 /* Import af alle Materialkomponenter slut */
 
 /* I deklaration skal i smide alle komponenter. I Imports smider i alle moduler. */
@@ -28,8 +30,10 @@ import { LocationService } from './quest/location.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
-    MatToolbarModule, MatButtonModule, MatIconModule, MatListModule
+    ReactiveFormsModule, FormsModule,
+    MatToolbarModule, MatButtonModule, MatIconModule, MatListModule, MatAutocompleteModule
   ],
   providers: [ LocationService ],
   bootstrap: [AppComponent]

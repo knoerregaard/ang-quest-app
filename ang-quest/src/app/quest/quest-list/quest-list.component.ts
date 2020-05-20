@@ -5,6 +5,7 @@ import {map, startWith} from 'rxjs/operators';
 
 import { LocationService } from '../location.service';
 import { HttpClient } from '@angular/common/http';
+import { EventService } from '../event.service';
 
 @Component({
   selector: 'app-quest-list',
@@ -25,23 +26,27 @@ export class QuestListComponent implements OnInit {
     id : 3, 
     title : "den tredje quest"
   }];
+  isActive : boolean = false;
 
   questCtrl = new FormControl();
   filteredQuests: Observable<any[]>;
 
-  constructor( private http : HttpClient ) {
+  constructor( private http : HttpClient, private eventService : EventService ) {
+    this.eventService.listenForUpdates().subscribe(
+      (suc) =>{console.log(suc)},
+      (error)=>{console.log(error)},
+      ()=>{console.log("done")}
+    )
+    // setTimeout(() => {
+    //   this.eventService.updateQuestStatus(123).subscribe(
+    //     (suc)=>{console.log(suc)},  //Ændre i ui således det passer objeketet fra db.
+    //     (error)=>{console.log(error)},  
+    //     ()=>{console.log("finnish")}
+    //   );
+    // }, 2000);
 
-    this.http.get('http://localhost:3000/quests')
-      .subscribe(
-        (suc : Array<Object>)=>{
-          this.filteredQuests = this.questCtrl.valueChanges
-          .pipe(
-            startWith(''),
-            map(quest => quest ? this._filterQuest(quest) : suc.slice())
-          );
-        }
-      )
   }
+  
   private _filterQuest(value: string): any[] {
     const filterValue = value.toLowerCase();
     return this.quests.filter(quest => quest.title.toLowerCase().indexOf(filterValue) === 0);
